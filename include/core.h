@@ -33,13 +33,11 @@ typedef struct struct_port {
   int file_descriptor;
   struct pollfd fds[1];
 } port_type;
-
 typedef struct struct_data {
   char time[TIME_SIZE + 1];
   char date[DATE_SIZE + 1];
   char temp[TEMP_SIZE + 1];
 } data_type;
-
 typedef struct struct_curl {
   CURL *curl;
   CURLcode result;

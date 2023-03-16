@@ -1,9 +1,12 @@
 // Copyright 2023 kruglovvs kruglov.valentine@gmail.com
+// this is the core program
+// this program realizes API, that gets data from prog "API_timer" or prog "CLI"
+// and API with thermostation, posting data to the server
 
-#include "../include/port.h"
+#include "../include/core.h"
 
 bool open_curl() {
-  if (curl_global_init(CURL_GLOBAL_ALL)) { 
+  if (curl_global_init(CURL_GLOBAL_ALL)) {
     return 1;
   }
   atexit(curl_global_cleanup);
@@ -65,10 +68,10 @@ bool get_data() {
     return 1;
   }
   if (poll(port.fds, 1, TIME_WAIT) <= 0) {
-    return 2;
+    return 1;
   }
   if (!(port.fds[0].revents & POLLIN)) {
-    return 3;
+    return 1;
   }
   if (read(port.file_descriptor, in_buffer, 20) != 20) {
     return 1;
@@ -140,9 +143,3 @@ int main() {
   }
   exit(0);
 }
-
-/*
-        CURL кривой
-        переделать так, чтобы от одного устройства было несколько датчиков -
-        сделать массив data
-*/

@@ -18,8 +18,6 @@
 #define WRITE_COMMAND_PATH "post.php"
 #define BUFFER_SIZE 24
 #define COUNT_TRIES_TO_CONNECT 3
-#define END '0'
-#define GET_DATA '1'
 #define TIME_SIZE 5
 #define DATE_SIZE 8
 #define TEMP_SIZE 3

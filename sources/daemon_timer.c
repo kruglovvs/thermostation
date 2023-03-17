@@ -2,7 +2,8 @@
 // this is a periphery program
 // this program realizes timer, that sends data to the core
 
-#include "../include/API_timer.h"
+#include "../include/daemon_timer.h"
+#include "../include/API.h"
 
 int main() {
   for (int i = 0; i < 2; ++i) {

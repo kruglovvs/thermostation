@@ -1,9 +1,10 @@
 // Copyright 2023 kruglovvs kruglov.valentine@gmail.com
 // this is the core program
-// this program realizes API, that gets data from prog "API_timer" or prog "CLI"
+// this program realizes API, that gets data from prog "daemon_timer"
 // and API with thermostation, posting data to the server
 
 #include "../include/core.h"
+#include "../include/API.h"
 
 bool open_curl() {
   if (curl_global_init(CURL_GLOBAL_ALL)) {

@@ -1,0 +1,46 @@
+# Use postgres/example user/password credentials
+version: "3.1"
+
+services:
+
+  postgresql:
+    image: "postgres:15.2"
+    restart: "always"
+    container_name: "postgresql"
+    environment:
+      POSTGRES_PASSWORD: "TheSTr0ngesTP@$$worD"
+    volumes: 
+      - ./data:/home/kruglovvs/thermostation/docker_server/data
+
+  adminer:
+    image: "adminer:4.8.1"
+    restart: "always"
+    container_name: "adminer"
+    ports:
+      - "8080:8080"
+
+  nginx:
+    image: "nginx:1.12.0"
+    restart: "always"
+    container_name: "nginx"
+    volumes:
+      - ./conf:/home/kruglovvs/thermostation/docker_server/conf
+      - ./html:/home/kruglovvs/thermostation/docker_server/html
+    ports:
+     - "80:80"
+    environment:
+      TZ: Europe/Moscow
+      
+  nodejs:
+    image: "node:8"
+    restart: "always"
+    container_name: "nodejs"
+    user: "node"
+    working_dir: /home/node/app
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - ./:/home/node/app
+    expose:
+      - "8081"
+    command: "npm start"
